@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" >MyHouseManager
+    </string>
+    <string name="action_settings" >Settings
+    </string>
+    <string name="hello_world" >Hello world!
+    </string>
+
+    <item name="Main_Login_Layout" type="id"></item>
+    <item name="lbl_name" type="id"></item>
+    <item name="lbl_pass" type="id"></item>
+    <item name="tb_name" type="id"></item>
+    <item name="tb_pass" type="id"></item>
+    <item name="btn_OK" type="id"></item>
+    <item name="btn_cancel" type="id"></item>
+
+</resources>

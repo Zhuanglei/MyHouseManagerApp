@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="main" >
+        <source path="C:\Documents and Settings\Administrator\AndroidStudioProjects\MyHouseManager\MyHouseManager\src\main\assets" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="C:\Documents and Settings\Administrator\AndroidStudioProjects\MyHouseManager\MyHouseManager\src\debug\assets" />
+    </dataSet>
+
+</merger>

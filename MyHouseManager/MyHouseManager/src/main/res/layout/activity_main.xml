@@ -1,0 +1,62 @@
+<FrameLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:focusableInTouchMode="false"
+    android:background="@drawable/Login_Background">
+
+    <FrameLayout
+        android:layout_width="258dp"
+        android:layout_height="136dp"
+        android:layout_gravity="center"
+        android:id="@id/Main_Login_Layout">
+
+        <TextView
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="姓名："
+            android:id="@id/lbl_name"
+            android:layout_gravity="left|top" />
+
+        <EditText
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@id/lbl_name"
+            android:layout_gravity="right|top" />
+
+        <TextView
+            android:layout_width="142dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="密码："
+            android:id="@id/lbl_pass"
+            android:layout_gravity="left|center_vertical" />
+
+        <EditText
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@id/tb_pass"
+            android:layout_gravity="right|center_vertical" />
+
+        <Button
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:id="@id/btn_cancel"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="-8dp" />
+
+        <Button
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:text="登录"
+            android:id="@id/btn_OK"
+            android:layout_gravity="left|bottom"
+            android:layout_marginBottom="-8dp" />
+    </FrameLayout>
+</FrameLayout>
