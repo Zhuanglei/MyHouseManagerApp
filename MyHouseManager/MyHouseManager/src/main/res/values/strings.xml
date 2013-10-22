@@ -8,6 +8,13 @@
     <string name="hello_world" >Hello world!
     </string>
 
+    <string name="menu_air">空调控制</string>
+    <string name="menu_ref">冰箱控制</string>
+    <string name="menu_tv">电视控制</string>
+    <string name="menu_wash">洗衣机控制</string>
+    <string name="menu_lamp">灯控制</string>
+    <string name="menu_account">账号管理</string>
+
     <item name="Main_Login_Layout" type="id"></item>
     <item name="lbl_name" type="id"></item>
     <item name="lbl_pass" type="id"></item>
@@ -15,5 +22,13 @@
     <item name="tb_pass" type="id"></item>
     <item name="btn_OK" type="id"></item>
     <item name="btn_cancel" type="id"></item>
+
+    <item name="Main_Menu_Layout" type="id"></item>
+    <item name="btn_Menu_air" type="id"></item>
+    <item name="btn_Menu_ref" type="id"></item>
+    <item name="btn_Menu_tv" type="id"></item>
+    <item name="btn_Menu_wash" type="id"></item>
+    <item name="btn_Menu_lamp" type="id"></item>
+    <item name="btn_Menu_account" type="id"></item>
 
 </resources>
