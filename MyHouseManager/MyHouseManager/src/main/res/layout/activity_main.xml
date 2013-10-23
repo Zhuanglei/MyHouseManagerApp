@@ -3,7 +3,8 @@
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:focusableInTouchMode="false"
-    android:background="@drawable/Login_Background">
+    android:background="@drawable/login_background">
+
 
     <FrameLayout
         android:layout_width="258dp"
@@ -52,10 +53,11 @@
             android:layout_marginBottom="3dp" />
 
         <Button
+            android:id="@id/btn_OK"
             android:layout_width="158dp"
             android:layout_height="wrap_content"
             android:text="登录"
-            android:id="@id/btn_OK"
+
             android:layout_gravity="left|bottom"
             android:layout_marginBottom="3dp" />
     </FrameLayout>
