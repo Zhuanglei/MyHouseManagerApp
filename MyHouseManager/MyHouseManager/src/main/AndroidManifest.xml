@@ -23,7 +23,8 @@
         android:theme="@style/AppTheme" >
         <service
                 android:name="com.vanelife.sdk.VaneService"
-                android:enabled="true" >
+            android:process=":remote"
+            android:enabled="true" >
         </service>
 
         <activity
@@ -35,6 +36,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity  android:name=".Loading"></activity>
+        <activity  android:name=".Controls"></activity>
     </application>
 
 </manifest>
