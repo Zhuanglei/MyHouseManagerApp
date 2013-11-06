@@ -1,87 +1,131 @@
 package com.mhm.myhousemanager;
 
-import android.os.Bundle;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-    //声明需要的组件
-    private  Button login,exit,reg;
-    private  EditText   username,password;
-    private SharedPreferences share;//声明SharedPreferences
+    private EditText userName,password;
+    private CheckBox rem_pw,auto_login;
+    private Button btn_login,btn_quit;
+    private String userNameValue,passwordValue;
+    private SharedPreferences sp;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        login=(Button)findViewById(R.id.btn_OK);
-        exit=(Button)findViewById(R.id.btn_cancel);
-        username=(EditText)findViewById(R.id.lbl_name);
-        password=(EditText)findViewById(R.id.lbl_pass);
-        share=getSharedPreferences("info",Activity.MODE_PRIVATE);
-        Editor edit=share.edit();
-        edit.putString("username", "admin");
-        edit.putString("password", "123456");
-        edit.commit();
-        exit.setOnClickListener(new Listenerimp());//退出的监听事件
-        //登陆的事件监听处理内部类
-        login.setOnClickListener(new OnClickListener() {
+        sp=this.getSharedPreferences("userInfo", Context.MODE_WORLD_READABLE);
+        userName=(EditText)findViewById(R.id.tb_name);
+        password=(EditText)findViewById(R.id.tb_pass);
+        rem_pw=(CheckBox)findViewById(R.id.cb_pass);
+        auto_login=(CheckBox)findViewById(R.id.cb_auto);
+        btn_login=(Button)findViewById(R.id.btn_OK);
+        btn_quit=(Button)findViewById(R.id.btn_cancel);
 
+
+
+        if(sp.getBoolean("isCheck",false))
+        {
+            rem_pw.setChecked(true);
+            userName.setText(sp.getString("USER_NAME",""));
+            password.setText(sp.getString("PASSWORD",""));
+            if(sp.getBoolean("AUTO_isCheck",false))
+            {
+                auto_login.setChecked(true);
+                Intent intent=new Intent(MainActivity.this,Loading.class);
+                MainActivity.this.startActivity(intent);
+            }
+        }
+        btn_login.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                //获取输入的信息
-                String name=username.getText().toString();
-                String pass=password.getText().toString();
-                //判断输入信息是否为空
-                if(name.trim().equals("") || pass.trim().equals("")) {
-                    Toast.makeText(MainActivity.this, "用户名和密码不能为空", Toast.LENGTH_LONG).show();
+            public void onClick(View view) {
+                userNameValue=userName.getText().toString();
+                passwordValue=password.getText().toString();
+
+                if(userNameValue.equals("admin")&&passwordValue.equals("1234"))
+                {
+                    Toast.makeText(MainActivity.this,"登录成功",Toast.LENGTH_LONG).show();;
+                    if(rem_pw.isChecked())
+                    {
+                        Editor editor=sp.edit();
+                        editor.putString("USER_NAME",userNameValue);
+                        editor.putString("PASSWORD",passwordValue);
+                        editor.commit();
+                    }
+                    Intent intent=new Intent(MainActivity.this,Loading.class);
+                    MainActivity.this.startActivity(intent);
                 }
-                //获取保存文件中的用户名和密码
-                String savedUsername = share.getString("username","");
-                String savedPassword = share.getString("password","");
-                //查看输入的密码和名字是否一致
-                if(name.trim().equals(savedUsername) && pass.trim().equals(savedPassword)) {
-                    Toast.makeText(MainActivity.this, "恭喜，亲，用户名和密码都正确！", Toast.LENGTH_LONG).show();
-
-
-                    Intent intent=new Intent(MainActivity.this,control.class);
-                    startActivity(intent);
-                    finish();
-
-                } else {
-                    //错误的话
-                    Toast.makeText(MainActivity.this, "用户名或者密码错误，请确认信息或者去注册", Toast.LENGTH_LONG).show();
-                    return;
+                else
+                {
+                    Toast.makeText(MainActivity.this,"用户名或密码错误，请重新登录！",Toast.LENGTH_LONG).show();
                 }
             }
         });
-    }
-    private class Listenerimp implements  OnClickListener{
+        rem_pw.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(rem_pw.isChecked()){
+                    System.out.println("记住密码已选中");
+                    sp.edit().putBoolean("isCheck",true).commit();
+                }
+                else
+                {
+                    System.out.println("记住密码未选中");
+                    sp.edit().putBoolean("isCheck",false).commit();
+                }
 
-        @Override
-        public void onClick(View v) {
-            // TODO Auto-generated method stub
-            finish();//结束一个Activity
-        }
+            }
+        });
+        auto_login.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(auto_login.isChecked())
+                {
+                    System.out.println("自动登录已选中");
+                    sp.edit().putBoolean("AUTO_isCheck",true).commit();
+                }
+                else
+                {
+                    System.out.println("自动登录未选中");
+                    sp.edit().putBoolean("AUTO_isCheck",false).commit();
+                }
+
+
+            }
+        });
+        btn_quit.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
+
     }
 
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
 }
-
-
-

@@ -22,6 +22,8 @@
     <item name="tb_pass" type="id"></item>
     <item name="btn_OK" type="id"></item>
     <item name="btn_cancel" type="id"></item>
+    <item name="cb_auto" type="id"></item>
+    <item name="cb_pass" type="id"></item>
 
     <item name="Main_Menu_Layout" type="id"></item>
     <item name="btn_Menu_air" type="id"></item>
