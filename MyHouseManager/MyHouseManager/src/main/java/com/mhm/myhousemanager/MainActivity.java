@@ -58,7 +58,12 @@ public class MainActivity extends Activity {
                 userNameValue=userName.getText().toString();
                 passwordValue=password.getText().toString();
 
-                if(userNameValue.equals("admin")&&passwordValue.equals("1234"))
+                md5 MD5=new md5();
+                MD5.main(passwordValue);
+                String PasswordValue=MD5.newpassword;
+                MD5.main(userNameValue);
+                String UserNameValue=MD5.newpassword;
+                if(UserNameValue.equals("21232f297a57a5a743894a0e4a801fc3")&&PasswordValue.equals("81dc9bdb52d04dc20036dbd8313ed055"))
                 {
                     Toast.makeText(MainActivity.this,"登录成功",Toast.LENGTH_LONG).show();;
                     if(rem_pw.isChecked())
