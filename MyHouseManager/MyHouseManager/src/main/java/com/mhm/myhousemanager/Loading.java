@@ -20,17 +20,23 @@ public class Loading extends Activity{
        super.onCreate(savedInstanceState);
        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
        setContentView(R.layout.activity_loading);
+
        progressBar=(ProgressBar)findViewById(R.id.pgBar);
        backButton=(Button)findViewById(R.id.btn_back);
        progressBar.setMax(10000);
+
        Intent intent=new Intent(Loading.this,Controls.class);
        Loading.this.startActivity(intent);
+
+
        backButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                finish();
            }
        });
+
+
 
    }
 

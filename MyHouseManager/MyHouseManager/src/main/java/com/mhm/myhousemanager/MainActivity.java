@@ -18,19 +18,23 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-    private EditText userName,password;
+    public EditText userName,password;
     private CheckBox rem_pw,auto_login;
     private Button btn_login,btn_quit;
-    private String userNameValue,passwordValue;
-    private SharedPreferences sp;
-
-
+    public  String userNameValue,passwordValue;
+   // private SharedPreferences sp;
+    String aaa;
+    private SharedPreferences share;
+    String saveUsername;
+    String savedPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        sp=this.getSharedPreferences("userInfo", Context.MODE_WORLD_READABLE);
+     //   sp=this.getSharedPreferences("userInfo", Context.MODE_WORLD_READABLE);
+        userName=(EditText)findViewById(R.id.tb_name);
+        password=(EditText)findViewById(R.id.tb_pass);
         userName=(EditText)findViewById(R.id.tb_name);
         password=(EditText)findViewById(R.id.tb_pass);
         rem_pw=(CheckBox)findViewById(R.id.cb_pass);
@@ -38,14 +42,22 @@ public class MainActivity extends Activity {
         btn_login=(Button)findViewById(R.id.btn_OK);
         btn_quit=(Button)findViewById(R.id.btn_cancel);
 
+        saveuser();//先保存一个数据admin 123456
 
-
-        if(sp.getBoolean("isCheck",false))
+        if(share.getBoolean("isCheck",false))
         {
             rem_pw.setChecked(true);
-            userName.setText(sp.getString("USER_NAME",""));
-            password.setText(sp.getString("PASSWORD",""));
-            if(sp.getBoolean("AUTO_isCheck",false))
+            if(share.getString("NEWUSER_NAME","")=="")
+            {
+                userName.setText(share.getString("USER_NAME",""));
+                password.setText(share.getString("PASSWORD",""));
+            }
+            else
+            {
+                userName.setText(share.getString("NEWUSER_NAME",""));
+                password.setText(share.getString("NEWPASSWORD",""));
+            }
+            if(share.getBoolean("AUTO_isCheck",false))
             {
                 auto_login.setChecked(true);
                 Intent intent=new Intent(MainActivity.this,Loading.class);
@@ -53,24 +65,44 @@ public class MainActivity extends Activity {
             }
         }
         btn_login.setOnClickListener(new OnClickListener() {
+
             @Override
             public void onClick(View view) {
+
+                if(share.getString("NEWUSER_NAME","")=="")
+                {
+                    saveUsername=share.getString("USER_NAME", "");
+                    savedPassword=share.getString("PASSWORD", "");
+                }
+                else
+                {
+                    saveUsername=share.getString("NEWUSER_NAME", "");
+                    savedPassword=share.getString("NEWPASSWORD", "");
+                }
                 userNameValue=userName.getText().toString();
                 passwordValue=password.getText().toString();
-
                 md5 MD5=new md5();
                 MD5.main(passwordValue);
                 String PasswordValue=MD5.newpassword;
                 MD5.main(userNameValue);
                 String UserNameValue=MD5.newpassword;
-                if(UserNameValue.equals("21232f297a57a5a743894a0e4a801fc3")&&PasswordValue.equals("81dc9bdb52d04dc20036dbd8313ed055"))
+                if(UserNameValue.equals(saveUsername)&&PasswordValue.equals(savedPassword))
                 {
                     Toast.makeText(MainActivity.this,"登录成功",Toast.LENGTH_LONG).show();;
                     if(rem_pw.isChecked())
                     {
-                        Editor editor=sp.edit();
-                        editor.putString("USER_NAME",userNameValue);
-                        editor.putString("PASSWORD",passwordValue);
+
+                        Editor editor=share.edit();
+                        if(share.getString("NEWUSER_NAME","")=="")
+                        {
+                            editor.putString("USER_NAME",userNameValue);
+                            editor.putString("PASSWORD",passwordValue);
+                        }
+                        else
+                        {
+                            editor.putString("NEWUSER_NAME",userNameValue);
+                            editor.putString("NEWPASSWORD",passwordValue);
+                        }
                         editor.commit();
                     }
                     Intent intent=new Intent(MainActivity.this,Loading.class);
@@ -87,12 +119,12 @@ public class MainActivity extends Activity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(rem_pw.isChecked()){
                     System.out.println("记住密码已选中");
-                    sp.edit().putBoolean("isCheck",true).commit();
+                    share.edit().putBoolean("isCheck",true).commit();
                 }
                 else
                 {
                     System.out.println("记住密码未选中");
-                    sp.edit().putBoolean("isCheck",false).commit();
+                    share.edit().putBoolean("isCheck",false).commit();
                 }
 
             }
@@ -103,12 +135,12 @@ public class MainActivity extends Activity {
                 if(auto_login.isChecked())
                 {
                     System.out.println("自动登录已选中");
-                    sp.edit().putBoolean("AUTO_isCheck",true).commit();
+                    share.edit().putBoolean("AUTO_isCheck",true).commit();
                 }
                 else
                 {
                     System.out.println("自动登录未选中");
-                    sp.edit().putBoolean("AUTO_isCheck",false).commit();
+                    share.edit().putBoolean("AUTO_isCheck",false).commit();
                 }
 
 
@@ -123,6 +155,7 @@ public class MainActivity extends Activity {
 
 
 
+
     }
 
 
@@ -133,4 +166,20 @@ public class MainActivity extends Activity {
         return true;
     }
 
+
+
+
+
+    //实现写一个admin 123456的用户
+    private void saveuser() {
+        // TODO Auto-generated method stub
+        share=getSharedPreferences("info",Activity.MODE_PRIVATE);
+        Editor edit=share.edit();
+        edit.putString("USER_NAME", "21232f297a57a5a743894a0e4a801fc3");
+        edit.putString("PASSWORD", "81dc9bdb52d04dc20036dbd8313ed055");
+
+        edit.commit();
+    }
 }
+
+

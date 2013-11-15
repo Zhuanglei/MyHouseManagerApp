@@ -38,6 +38,8 @@
         </activity>
         <activity  android:name=".Loading"></activity>
         <activity  android:name=".Controls"></activity>
+        <activity  android:name=".control"></activity>
+        <activity  android:name=".number"></activity>
     </application>
 
 </manifest>

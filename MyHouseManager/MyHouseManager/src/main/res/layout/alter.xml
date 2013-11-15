@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="56dp"></LinearLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="200dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新用户名："
+            android:id="@+id/textView"
+            android:layout_gravity="left|top"
+            android:textSize="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新密码："
+            android:id="@+id/textView2"
+            android:layout_gravity="left|center_vertical"
+            android:textSize="30dp" />
+
+        <EditText
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/newname"
+            android:layout_gravity="right|top" />
+
+        <EditText
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/newpassword"
+            android:layout_gravity="right|center_vertical" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确认"
+            android:id="@+id/number_ok"
+            android:layout_gravity="left|center_vertical"
+            android:textSize="30dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:id="@+id/number_cancel"
+            android:layout_gravity="right|center_vertical"
+            android:textSize="30dp" />
+    </FrameLayout>
+
+</LinearLayout>
