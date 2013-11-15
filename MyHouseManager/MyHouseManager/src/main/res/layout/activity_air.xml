@@ -1,7 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:baselineAligned="false">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="空调控制界面"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="1dp"
+        android:textSize="32dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30dp" />
+
+    <GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开关："
+            android:id="@+id/air_switch"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:textSize="30dp" />
+
+    </GridLayout>
+
+    <FrameLayout
+        android:layout_width="311dp"
+        android:layout_height="106dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="温度："
+            android:id="@+id/textView3"
+            android:textSize="30dp"
+            android:layout_gravity="left|top" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="风速："
+            android:id="@+id/textView4"
+            android:layout_gravity="left|center_vertical"
+            android:textSize="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="模式："
+            android:id="@+id/textView5"
+            android:layout_gravity="left|bottom"
+            android:textSize="30dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="健康模式"
+            android:id="@+id/cb_Healthy"
+            android:layout_gravity="center_horizontal|bottom"
+            android:visibility="visible" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="制冷模式"
+            android:id="@+id/cb_makecold"
+            android:layout_gravity="right|bottom"
+            android:visibility="visible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/air_temp"
+            android:layout_gravity="center_horizontal|top"
+            android:textSize="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/air_wind"
+            android:layout_gravity="center"
+            android:textSize="30dp" />
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="311dp"
+        android:layout_height="110dp">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="制热模式"
+            android:id="@+id/cb_makehot"
+            android:layout_gravity="center_horizontal|top"
+            android:visibility="visible" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="除湿        "
+            android:id="@+id/cb_arefaction"
+            android:layout_gravity="right|top"
+            android:visibility="visible" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="循环风    "
+            android:id="@+id/cb_loop"
+            android:layout_gravity="center"
+            android:visibility="visible" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自然风    "
+            android:id="@+id/cb_nature"
+            android:layout_gravity="right|center_vertical"
+            android:visibility="visible" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nowtemperature"
+            android:layout_gravity="center_horizontal|top"
+            android:textSize="30dp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <SeekBar
+            android:layout_width="239dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/air_choice"
+            android:layout_gravity="left|center_vertical"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="         "
+            android:id="@+id/air_now"
+            android:layout_gravity="right|center_vertical"
+            android:textSize="20dp"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/tb_name"
+            android:layout_gravity="center_horizontal|top"
+            android:visibility="invisible" />
+    </FrameLayout>
 
 </LinearLayout>
